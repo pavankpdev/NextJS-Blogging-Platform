@@ -1,9 +1,9 @@
 import Head from 'next/head'
 import styles from '@/styles/Home.module.css'
-import { useUser, SignOutButton } from "@clerk/nextjs";
+import { useUser, SignOutButton } from '@clerk/nextjs'
 
 export default function Home() {
-  const {user} = useUser();
+  const { user } = useUser()
   return (
     <>
       <Head>
