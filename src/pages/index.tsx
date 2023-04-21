@@ -1,7 +1,7 @@
 import Head from 'next/head'
 
 // COMPONENTS
-import Navbar from "@/components/layouts/Navabr";
+import Navbar from '@/components/layouts/Navabr'
 
 export default function Home() {
   return (
