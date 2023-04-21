@@ -9,7 +9,9 @@ const Navbar = () => {
   return (
     <>
       <nav className={`${styles.navbar__container}`}>
-        <div className={`${UtilityStyles.container} ${styles.navbar__nav__items}`}>
+        <div
+          className={`${UtilityStyles.container} ${styles.navbar__nav__items}`}
+        >
           <div className={styles.navbar__logo}>
             <h1>Logo</h1>
           </div>

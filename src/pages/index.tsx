@@ -3,7 +3,6 @@ import Head from 'next/head'
 // COMPONENTS
 import Navbar from '@/components/layouts/Navabr'
 
-
 // STYLES
 import UtilityStyles from '@/styles/Utility.module.scss'
 
