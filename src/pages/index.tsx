@@ -2,6 +2,7 @@ import Head from 'next/head'
 
 // COMPONENTS
 import Navbar from '@/components/layouts/Navabr'
+import BlogCard from '@/components/Blog/Card'
 
 // STYLES
 import UtilityStyles from '@/styles/Utility.module.scss'
@@ -18,6 +19,9 @@ export default function Home() {
       <Navbar />
       <main className={UtilityStyles.container}>
         <h1>Recent Blogs</h1>
+        <div>
+          <BlogCard />
+        </div>
       </main>
     </>
   )
