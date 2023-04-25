@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { useEffect, useState } from 'react'
+import { useQuery } from "react-query";
 
 // COMPONENTS
 import Navbar from '@/components/layouts/Navabr'
@@ -9,32 +9,16 @@ import BlogCard from '@/components/Blog/Card'
 import UtilityStyles from '@/styles/Utility.module.scss'
 import styles from '@/styles/Home.module.scss'
 
-// CONFIG
-import { axiosInstance as axios } from '@/config/axios'
 
 // TYPE
 import type { Blog } from '@/types'
+import { getBlogsByUserId } from "@/helpers/Blogs/getBlogsByUserId";
 
 export default function Home() {
-  const [blogs, setBlogs] = useState<Blog[]>([])
-  const [isFetchingBlogs, setIsFetchingBlogs] = useState(false)
-
-  useEffect(() => {
-    setIsFetchingBlogs(true)
-    axios({
-      method: 'GET',
-      url: `/b/${process.env.NEXT_PUBLIC_JSONBIN_BIN_ID}`,
-    })
-      .then((res) => {
-        setBlogs(res.data?.record?.blogs)
-      })
-      .catch((err) => {
-        alert(err?.message || 'Something went wrong')
-      })
-      .finally(() => {
-        setIsFetchingBlogs(false)
-      })
-  }, [])
+  const {data: blogs, isFetching: isFetchingBlogs} = useQuery({
+    queryKey: ['blogs_by_id'],
+    queryFn: () => getBlogsByUserId(123)
+  })
 
   return (
     <>
@@ -51,7 +35,7 @@ export default function Home() {
           {isFetchingBlogs ? (
             <>Fetching your Blogs</>
           ) : (
-            blogs.map((blog) => {
+            (blogs?.data?.record?.blogs as unknown as Blog[]).map((blog) => {
               return (
                 <BlogCard
                   thumbnailImage={blog?.thumbnailImage}
