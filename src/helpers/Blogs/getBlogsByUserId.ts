@@ -1,5 +1,4 @@
-import { axiosInstance as axios } from "@/config/axios";
-
+import { axiosInstance as axios } from '@/config/axios'
 
 export const getBlogsByUserId = async (userId: string | number) => {
   console.log('getBlogsByUserId', userId)

@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { useQuery } from "react-query";
+import { useQuery } from 'react-query'
 
 // COMPONENTS
 import Navbar from '@/components/layouts/Navabr'
@@ -9,15 +9,14 @@ import BlogCard from '@/components/Blog/Card'
 import UtilityStyles from '@/styles/Utility.module.scss'
 import styles from '@/styles/Home.module.scss'
 
-
 // TYPE
 import type { Blog } from '@/types'
-import { getBlogsByUserId } from "@/helpers/Blogs/getBlogsByUserId";
+import { getBlogsByUserId } from '@/helpers/Blogs/getBlogsByUserId'
 
 export default function Home() {
-  const {data: blogs, isFetching: isFetchingBlogs} = useQuery({
+  const { data: blogs, isFetching: isFetchingBlogs } = useQuery({
     queryKey: ['blogs_by_id'],
-    queryFn: () => getBlogsByUserId(123)
+    queryFn: () => getBlogsByUserId(123),
   })
 
   return (
