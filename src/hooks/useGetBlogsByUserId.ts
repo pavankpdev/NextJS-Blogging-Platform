@@ -1,13 +1,13 @@
 import { axiosInstance as axios } from '@/config/axios'
-import { useQuery } from "react-query";
+import { useQuery } from 'react-query'
 
 type Variables = {
-  userId: string | number,
+  userId: string | number
   // add more here
 }
 
 type QueryParams = {
-  variables: Variables,
+  variables: Variables
 }
 const getBlogsByUserId = async (userId: string | number) => {
   console.log('getBlogsByUserId', userId)

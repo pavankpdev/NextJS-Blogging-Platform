@@ -12,13 +12,13 @@ import styles from '@/styles/Home.module.scss'
 import type { Blog } from '@/types'
 
 // HOOKS
-import { useGetBlogsByUserId } from "@/hooks/useGetBlogsByUserId";
+import { useGetBlogsByUserId } from '@/hooks/useGetBlogsByUserId'
 
 export default function Home() {
   const { data: blogs, isFetching: isFetchingBlogs } = useGetBlogsByUserId({
     variables: {
-      userId: '123'
-    }
+      userId: '123',
+    },
   })
 
   return (
