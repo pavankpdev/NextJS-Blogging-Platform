@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 
 // COMPONENTS
 import Navbar from '@/components/layouts/Navabr'
@@ -13,6 +14,7 @@ import type { Blog } from '@/types'
 
 // HOOKS
 import { useGetBlogsByUserId } from '@/hooks/useGetBlogsByUserId'
+import FloatingButton from '@/components/Blog/FloatingButton'
 
 export default function Home() {
   const { data: blogs, isFetching: isFetchingBlogs } = useGetBlogsByUserId({
@@ -20,6 +22,12 @@ export default function Home() {
       userId: '123',
     },
   })
+
+  const router = useRouter()
+
+  const toCreateNewBlog = () => {
+    router.push('/blog/create')
+  }
 
   return (
     <>
@@ -30,8 +38,19 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
+      <FloatingButton />
       <main className={UtilityStyles.container}>
-        <h1>Recent Blogs</h1>
+        <div className={styles.heading__container}>
+          <h1>Recent Blogs</h1>
+          <div>
+            <button
+              className={UtilityStyles.primary__btn}
+              onClick={toCreateNewBlog}
+            >
+              Create New Blog
+            </button>
+          </div>
+        </div>
         <div className={styles.blogcards__deck}>
           {isFetchingBlogs ? (
             <>Fetching your Blogs</>
