@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import { useQuery } from 'react-query'
 
 // COMPONENTS
 import Navbar from '@/components/layouts/Navabr'
@@ -11,12 +10,15 @@ import styles from '@/styles/Home.module.scss'
 
 // TYPE
 import type { Blog } from '@/types'
-import { getBlogsByUserId } from '@/helpers/Blogs/getBlogsByUserId'
+
+// HOOKS
+import { useGetBlogsByUserId } from "@/hooks/useGetBlogsByUserId";
 
 export default function Home() {
-  const { data: blogs, isFetching: isFetchingBlogs } = useQuery({
-    queryKey: ['blogs_by_id'],
-    queryFn: () => getBlogsByUserId(123),
+  const { data: blogs, isFetching: isFetchingBlogs } = useGetBlogsByUserId({
+    variables: {
+      userId: '123'
+    }
   })
 
   return (
