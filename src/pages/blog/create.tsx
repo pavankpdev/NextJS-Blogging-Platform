@@ -1,14 +1,17 @@
 import dynamic from 'next/dynamic'
-import Head from "next/head";
+import Head from 'next/head'
 
 // COMPONENTS
-import Navbar from "@/components/layouts/Navabr";
+import Navbar from '@/components/layouts/Navabr'
 
 // STYLES
-import UtilityStyles from "@/styles/Utility.module.scss";
+import UtilityStyles from '@/styles/Utility.module.scss'
 import Styles from '@/styles/Editor.module.scss'
 
 const TipTap = dynamic(() => import('@/components/Editor/tiptap'), {
+  ssr: false,
+})
+const ToolBar = dynamic(() => import('@/components/Editor/ToolBar'), {
   ssr: false,
 })
 
@@ -24,6 +27,7 @@ const Create = () => {
       <Navbar />
       <main className={UtilityStyles.container}>
         <div className={Styles.tiptap__container}>
+          <ToolBar />
           <TipTap />
         </div>
       </main>
