@@ -1,0 +1,16 @@
+.tiptap__container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media (min-width:1536px) {
+  .tiptap__container {
+    width: 80%;
+  }
+}
+
+@media (min-width:2560px) {
+  .tiptap__container {
+    width: 70%;
+  }
+}

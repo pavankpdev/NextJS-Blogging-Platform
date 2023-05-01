@@ -17,3 +17,11 @@ h5,
 h6 {
   color: #fffffe;
 }
+
+.ProseMirror {
+  height: 100vh;
+}
+
+.ProseMirror:focus-within {
+  outline: 0 !important;
+}
