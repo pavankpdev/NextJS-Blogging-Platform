@@ -7,6 +7,7 @@ import Navbar from '@/components/layouts/Navabr'
 // STYLES
 import UtilityStyles from '@/styles/Utility.module.scss'
 import Styles from '@/styles/Editor.module.scss'
+import TitleInput from '@/components/Editor/TitleInput'
 
 const TipTap = dynamic(() => import('@/components/Editor/tiptap'), {
   ssr: false,
@@ -28,6 +29,7 @@ const Create = () => {
       <main className={UtilityStyles.container}>
         <div className={Styles.tiptap__container}>
           <ToolBar />
+          <TitleInput />
           <TipTap />
         </div>
       </main>
