@@ -10,8 +10,13 @@ import { CgFormatHeading } from 'react-icons/cg'
 import styles from '@/styles/Editor.module.scss'
 import Tool from '@/components/Editor/ToolBar/Tool'
 import { IconType } from 'react-icons'
+import React from 'react'
 
-const ToolBar = () => {
+type Props = {
+  isSaving: boolean
+}
+
+const ToolBar: React.FC<Props> = (props) => {
   const tools: IconType[] = [
     AiOutlineBold,
     AiOutlineItalic,
@@ -26,9 +31,14 @@ const ToolBar = () => {
   return (
     <>
       <div className={styles.toolbar__container}>
-        {tools.map((tool, index) => {
-          return <Tool Icon={tool} key={index} />
-        })}
+        <div className={styles.toolbar_items}>
+          {tools.map((tool, index) => {
+            return <Tool Icon={tool} key={index} />
+          })}
+        </div>
+        <div className={styles.loading_indicator}>
+          {props.isSaving ? 'Saving ...' : 'All Changes are Saved'}
+        </div>
       </div>
     </>
   )

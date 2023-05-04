@@ -30,7 +30,7 @@ const createNewBlog = async (payload: TCreateBlog) => {
     updatedAt: new Date().toISOString(),
   }
 
-  let blogsToBeUpdated;
+  let blogsToBeUpdated
 
   // Check if id exists
   if (allBlogs.some((blog: { id: string }) => blog.id === payload.id)) {
