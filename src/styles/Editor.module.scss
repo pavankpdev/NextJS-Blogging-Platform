@@ -7,37 +7,48 @@
   padding: 1rem;
   background-color: #1b263b;
   border-radius: 6px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
   margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-  .toolbar__item__container {
-    width: fit-content;
+  .toolbar_items {
     display: flex;
-
-    .toolbar__item {
-      background-color: transparent;
-      border: none;
-      color: white;
-      font-size: 20px;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    .toolbar__item__container {
+      width: fit-content;
       display: flex;
-      padding: 5px;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: all 0.3s linear;
-      &:hover {
-        background-color: #801bd2;
-      }
-      &:focus {
-        outline: none;
-        background-color: #b884e7;
-      }
 
-      &:active {
-        background-color: #410b6f;
+      .toolbar__item {
+        background-color: transparent;
+        border: none;
+        color: white;
+        font-size: 20px;
+        display: flex;
+        padding: 5px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s linear;
+        &:hover {
+          background-color: #801bd2;
+        }
+        &:focus {
+          outline: none;
+          background-color: #b884e7;
+        }
+
+        &:active {
+          background-color: #410b6f;
+        }
       }
     }
+  }
+
+  .loading_indicator {
+    color: #fffffe;
+    font-size: 18px;
+    font-weight: 700;
   }
 }
 

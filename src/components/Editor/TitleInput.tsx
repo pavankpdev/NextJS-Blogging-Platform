@@ -5,13 +5,17 @@ interface HandleInputChange extends HTMLTextAreaElement {
   target: HTMLInputElement
 }
 
-const TitleInput = () => {
-  const [value, setValue] = React.useState<string>('')
+type Props = {
+  value: string
+  setValue: React.Dispatch<React.SetStateAction<string>>
+}
 
+const TitleInput: React.FC<Props> = (props) => {
   const textAreaRef = React.useRef<HTMLTextAreaElement>(null)
 
   const MinHeight = 50
-  const onChange = (event: unknown) => setValue((event as HandleInputChange).target.value)
+  const onChange = (event: unknown) =>
+    props.setValue((event as HandleInputChange).target.value)
 
   React.useLayoutEffect(() => {
     if (!textAreaRef?.current) {
@@ -25,7 +29,7 @@ const TitleInput = () => {
       textAreaRef.current.scrollHeight,
       MinHeight
     )}px`
-  }, [value])
+  }, [props.value])
 
   return (
     <>
@@ -34,7 +38,7 @@ const TitleInput = () => {
         className={styles.title_input}
         placeholder="Enter a title"
         onChange={onChange}
-        value={value}
+        value={props.value}
       ></textarea>
     </>
   )

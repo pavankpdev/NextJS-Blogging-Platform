@@ -8,6 +8,9 @@ import Navbar from '@/components/layouts/Navabr'
 import UtilityStyles from '@/styles/Utility.module.scss'
 import Styles from '@/styles/Editor.module.scss'
 import TitleInput from '@/components/Editor/TitleInput'
+import React, { useEffect } from 'react'
+import { useCreateBlog } from '@/hooks/useCreateBlog'
+import { useUser } from '@clerk/nextjs'
 
 const TipTap = dynamic(() => import('@/components/Editor/tiptap'), {
   ssr: false,
@@ -17,6 +20,41 @@ const ToolBar = dynamic(() => import('@/components/Editor/ToolBar'), {
 })
 
 const Create = () => {
+  const { user, isLoaded } = useUser()
+
+  const [title, setTitle] = React.useState<string>('')
+  const [content, setContent] = React.useState<string>('')
+  const [blogId] = React.useState<string>(() => `${Date.now()}`)
+
+  const { mutate, isLoading } = useCreateBlog({
+    variables: {
+      title: title || 'Untitled',
+      content,
+      userId: user?.id as string,
+      id: `${blogId}:${user?.id}`,
+      thumbnailImage: 'https://picsum.photos/200/300',
+    },
+    onSuccess: (data: unknown) => {
+      console.log(data)
+    },
+    onError: (error) => {
+      console.log(error)
+    },
+    onSettled: () => {
+      console.log('settled')
+    },
+  })
+
+  useEffect(() => {
+    const createBlog = setTimeout(() => {
+      if (user?.id) {
+        mutate()
+      }
+    }, 1500)
+
+    return () => clearTimeout(createBlog)
+  }, [title, content])
+
   return (
     <>
       <Head>
@@ -28,9 +66,15 @@ const Create = () => {
       <Navbar />
       <main className={UtilityStyles.container}>
         <div className={Styles.tiptap__container}>
-          <ToolBar />
-          <TitleInput />
-          <TipTap />
+          <ToolBar isSaving={isLoading} />
+          {isLoaded ? (
+            <>
+              <TitleInput value={title} setValue={setTitle} />
+              <TipTap value={content} setValue={setContent} />
+            </>
+          ) : (
+            <h4>Loading Please wait...</h4>
+          )}
         </div>
       </main>
     </>

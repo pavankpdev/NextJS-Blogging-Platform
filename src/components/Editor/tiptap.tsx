@@ -1,13 +1,17 @@
 import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
+import React from 'react'
 
-const Tiptap = () => {
+type Props = {
+  value: string
+  setValue: React.Dispatch<React.SetStateAction<string>>
+}
+const Tiptap: React.FC<Props> = (props) => {
   const editor = useEditor({
     extensions: [StarterKit],
-    content: `
-    `,
+    content: props.value,
     onUpdate: ({ editor }) => {
-      console.log(editor.getHTML())
+      props.setValue(editor.getHTML())
     },
   })
 
