@@ -1,0 +1,39 @@
+.image__uploader__container {
+  width: 100%;
+  border: 2px dashed #878787;
+  border-radius: 1rem;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h4 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #878787;
+  }
+}
+
+@media (min-width: 768px) {
+  .image__uploader__container {
+    height: 300px;
+  }
+}
+@media (min-width: 1024px) {
+  .image__uploader__container {
+    height: 400px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .image__uploader__container {
+    height: 500px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .image__uploader__container {
+    height: 550px;
+  }
+}

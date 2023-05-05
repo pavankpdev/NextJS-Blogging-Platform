@@ -5,6 +5,9 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
+  experimental: {
+    esmExternals: false, // THIS IS THE FLAG THAT MATTERS
+  },
 }
 
 module.exports = nextConfig

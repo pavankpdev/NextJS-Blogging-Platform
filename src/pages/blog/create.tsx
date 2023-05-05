@@ -11,6 +11,7 @@ import TitleInput from '@/components/Editor/TitleInput'
 import React, { useEffect } from 'react'
 import { useCreateBlog } from '@/hooks/useCreateBlog'
 import { useUser } from '@clerk/nextjs'
+import ImageUploader from '@/components/Editor/ImageUploader'
 
 const TipTap = dynamic(() => import('@/components/Editor/tiptap'), {
   ssr: false,
@@ -24,6 +25,7 @@ const Create = () => {
 
   const [title, setTitle] = React.useState<string>('')
   const [content, setContent] = React.useState<string>('')
+  const [thumbnailImage, setThumbnailImage] = React.useState<string>('')
   const [blogId] = React.useState<string>(() => `${Date.now()}`)
 
   const { mutate, isLoading } = useCreateBlog({
@@ -32,7 +34,7 @@ const Create = () => {
       content,
       userId: user?.id as string,
       id: `${blogId}:${user?.id}`,
-      thumbnailImage: 'https://picsum.photos/200/300',
+      thumbnailImage,
     },
     onSuccess: (data: unknown) => {
       console.log(data)
@@ -66,6 +68,10 @@ const Create = () => {
       <Navbar />
       <main className={UtilityStyles.container}>
         <div className={Styles.tiptap__container}>
+          <ImageUploader
+            setImage={setThumbnailImage}
+            title={'Upload Thumbnail Image'}
+          />
           <ToolBar isSaving={isLoading} />
           {isLoaded ? (
             <>
