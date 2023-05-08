@@ -1,6 +1,7 @@
 import React from 'react'
 import { useEditor, Editor as TipTapEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
+import Underline from '@tiptap/extension-underline'
 
 type EditorProps = {
   content: string
@@ -18,7 +19,7 @@ export const EditorProvider: React.FC<React.PropsWithChildren> = ({
   const [content, setContent] = React.useState<string>('')
 
   const instance = useEditor({
-    extensions: [StarterKit],
+    extensions: [StarterKit, Underline],
     content,
     onUpdate: ({ editor }) => {
       setContent(editor.getHTML())

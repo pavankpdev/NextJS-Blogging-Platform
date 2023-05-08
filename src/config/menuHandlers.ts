@@ -1,4 +1,4 @@
-import { Editor } from "@tiptap/react";
+import { Editor } from '@tiptap/react'
 
 export const menuHandlers = (editor: Editor, type: string) => {
   const handlers: Record<string, VoidFunction> = {

@@ -16,16 +16,45 @@ type Props = {
   isSaving: boolean
 }
 
+type Tools = {
+  type: string
+  Icon: IconType
+}
+
 const ToolBar: React.FC<Props> = (props) => {
-  const tools: IconType[] = [
-    AiOutlineBold,
-    AiOutlineItalic,
-    AiOutlineUnderline,
-    AiOutlineStrikethrough,
-    FaHeading,
-    BiHeading,
-    CgFormatHeading,
-    BiCodeAlt,
+  const tools: Array<Tools> = [
+    {
+      type: 'bold',
+      Icon: AiOutlineBold,
+    },
+    {
+      type: 'italic',
+      Icon: AiOutlineItalic,
+    },
+    {
+      type: 'underline',
+      Icon: AiOutlineUnderline,
+    },
+    {
+      type: 'strike',
+      Icon: AiOutlineStrikethrough,
+    },
+    {
+      type: 'heading1',
+      Icon: FaHeading,
+    },
+    {
+      type: 'heading2',
+      Icon: BiHeading,
+    },
+    {
+      type: 'heading3',
+      Icon: CgFormatHeading,
+    },
+    {
+      type: 'code',
+      Icon: BiCodeAlt,
+    },
   ]
 
   return (
@@ -33,7 +62,7 @@ const ToolBar: React.FC<Props> = (props) => {
       <div className={styles.toolbar__container}>
         <div className={styles.toolbar_items}>
           {tools.map((tool, index) => {
-            return <Tool Icon={tool} key={index} />
+            return <Tool Icon={tool.Icon} type={tool.type} key={index} />
           })}
         </div>
         <div className={styles.loading_indicator}>

@@ -12,6 +12,7 @@
     "@clerk/nextjs": "^4.16.2",
     "@tiptap/extension-document": "^2.0.3",
     "@tiptap/extension-placeholder": "^2.0.3",
+    "@tiptap/extension-underline": "^2.0.3",
     "@tiptap/pm": "^2.0.3",
     "@tiptap/react": "^2.0.3",
     "@tiptap/starter-kit": "^2.0.3",
