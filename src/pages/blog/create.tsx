@@ -1,17 +1,22 @@
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
+import React, { useContext, useEffect } from 'react'
+import { useUser } from '@clerk/nextjs'
 
 // COMPONENTS
 import Navbar from '@/components/layouts/Navabr'
+import TitleInput from '@/components/Editor/TitleInput'
+import ImageUploader from '@/components/Editor/ImageUploader'
 
 // STYLES
 import UtilityStyles from '@/styles/Utility.module.scss'
 import Styles from '@/styles/Editor.module.scss'
-import TitleInput from '@/components/Editor/TitleInput'
-import React, { useEffect } from 'react'
+
+// HOOKS
 import { useCreateBlog } from '@/hooks/useCreateBlog'
-import { useUser } from '@clerk/nextjs'
-import ImageUploader from '@/components/Editor/ImageUploader'
+
+// CONTEXT
+import { Editor } from '@/context/Editor'
 
 const TipTap = dynamic(() => import('@/components/Editor/tiptap'), {
   ssr: false,
@@ -24,14 +29,15 @@ const Create = () => {
   const { user, isLoaded } = useUser()
 
   const [title, setTitle] = React.useState<string>('')
-  const [content, setContent] = React.useState<string>('')
   const [thumbnailImage, setThumbnailImage] = React.useState<string>('')
   const [blogId] = React.useState<string>(() => `${Date.now()}`)
+
+  const editor = useContext(Editor)
 
   const { mutate, isLoading } = useCreateBlog({
     variables: {
       title: title || 'Untitled',
-      content,
+      content: editor.content,
       userId: user?.id as string,
       id: `${blogId}:${user?.id}`,
       thumbnailImage,
@@ -55,7 +61,7 @@ const Create = () => {
     }, 1500)
 
     return () => clearTimeout(createBlog)
-  }, [title, content])
+  }, [title, editor.content])
 
   return (
     <>
@@ -76,7 +82,7 @@ const Create = () => {
           {isLoaded ? (
             <>
               <TitleInput value={title} setValue={setTitle} />
-              <TipTap value={content} setValue={setContent} />
+              <TipTap />
             </>
           ) : (
             <h4>Loading Please wait...</h4>
