@@ -8,6 +8,9 @@ const nextConfig = {
   experimental: {
     esmExternals: false, // THIS IS THE FLAG THAT MATTERS
   },
+  images: {
+    domains: ['cdn.hashnode.com'],
+  },
 }
 
 module.exports = nextConfig
