@@ -25,7 +25,7 @@ export const EditorProvider: React.FC<React.PropsWithChildren> = ({
       Underline,
       Image.configure({
         inline: true,
-      })
+      }),
     ],
     content,
     onUpdate: ({ editor }) => {

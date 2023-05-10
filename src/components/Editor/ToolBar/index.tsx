@@ -64,7 +64,7 @@ const ToolBar: React.FC<Props> = (props) => {
           {tools.map((tool, index) => {
             return <Tool Icon={tool.Icon} type={tool.type} key={index} />
           })}
-          <Tool Icon={FaImage} type={'image'}/>
+          <Tool Icon={FaImage} type={'image'} />
         </div>
         <div className={styles.loading_indicator}>
           {props.isSaving ? 'Saving ...' : 'All Changes are Saved'}

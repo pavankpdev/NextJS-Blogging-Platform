@@ -3,7 +3,7 @@ import { IconType } from 'react-icons'
 import React from 'react'
 import { Editor } from '@/context/Editor'
 import { menuHandlers } from '@/config/menuHandlers'
-import ImageUploadModal from "@/components/Editor/ToolBar/ImageUploadModal";
+import ImageUploadModal from '@/components/Editor/ToolBar/ImageUploadModal'
 
 type Props = {
   Icon: IconType
@@ -18,7 +18,7 @@ const Tool: React.FC<Props> = (props) => {
 
   let clickHandler = menuHandlers(editor.instance, props.type)
 
-  if(props.type === "image") {
+  if (props.type === 'image') {
     clickHandler = () => setIsImageModalOpen(true)
   }
 
