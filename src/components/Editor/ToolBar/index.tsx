@@ -4,7 +4,7 @@ import {
   AiOutlineStrikethrough,
   AiOutlineUnderline,
 } from 'react-icons/ai'
-import { FaHeading } from 'react-icons/fa'
+import { FaHeading, FaImage } from 'react-icons/fa'
 import { BiHeading, BiCodeAlt } from 'react-icons/bi'
 import { CgFormatHeading } from 'react-icons/cg'
 import styles from '@/styles/Editor.module.scss'
@@ -64,6 +64,7 @@ const ToolBar: React.FC<Props> = (props) => {
           {tools.map((tool, index) => {
             return <Tool Icon={tool.Icon} type={tool.type} key={index} />
           })}
+          <Tool Icon={FaImage} type={'image'}/>
         </div>
         <div className={styles.loading_indicator}>
           {props.isSaving ? 'Saving ...' : 'All Changes are Saved'}

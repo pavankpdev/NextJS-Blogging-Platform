@@ -84,9 +84,34 @@
   }
 }
 
+.editor__image__uploader {
+  background-color: #1b263b;
+  z-index: 999;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  padding: 1rem;
+  border-radius: 12px;
+  width: 80%;
+  border: 1px solid #fff;
+}
+
+.editor__image__uploader__visible {
+  display: block;
+}
+
+
+@media (min-width: 1020px) {
+  .editor__image__uploader {
+    width: 50%;
+  }
+}
+
 @media (min-width: 1536px) {
-  .tiptap__container {
-    width: 80%;
+  .editor__image__uploader {
+    width: 30%;
   }
 }
 
