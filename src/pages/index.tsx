@@ -60,6 +60,7 @@ export default function Home() {
                 <BlogCard
                   thumbnailImage={blog?.thumbnailImage}
                   title={blog?.title}
+                  description={blog?.description}
                   content={blog?.content}
                   updatedAt={blog?.updatedAt}
                   id={blog?.id}

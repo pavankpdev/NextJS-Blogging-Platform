@@ -6,7 +6,8 @@ type TCreateBlog = {
   content: string
   userId: string | number
   id: string
-  thumbnailImage?: string,
+  thumbnailImage?: string
+  description: string
 }
 
 type MutationParams = {
@@ -42,6 +43,7 @@ const createNewBlog = async (payload: TCreateBlog) => {
           title: payload.title,
           content: payload.content,
           thumbnailImage: payload.thumbnailImage,
+          description: payload.description,
         }
       }
       return blog

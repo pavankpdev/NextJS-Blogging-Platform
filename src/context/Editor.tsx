@@ -6,11 +6,13 @@ import Image from '@tiptap/extension-image'
 
 type EditorProps = {
   content: string
+  description: string
   instance: TipTapEditor | null
 }
 
 export const Editor = React.createContext<EditorProps>({
   content: '',
+  description: '',
   instance: null,
 })
 
@@ -18,6 +20,7 @@ export const EditorProvider: React.FC<React.PropsWithChildren> = ({
   children,
 }) => {
   const [content, setContent] = React.useState<string>('')
+  const [description, setDescription] = React.useState<string>('')
 
   const instance = useEditor({
     extensions: [
@@ -30,6 +33,7 @@ export const EditorProvider: React.FC<React.PropsWithChildren> = ({
     content,
     onUpdate: ({ editor }) => {
       setContent(editor.getHTML())
+      setDescription(editor.getText())
     },
   })
 
@@ -39,6 +43,7 @@ export const EditorProvider: React.FC<React.PropsWithChildren> = ({
         value={{
           instance,
           content,
+          description,
         }}
       >
         {children}

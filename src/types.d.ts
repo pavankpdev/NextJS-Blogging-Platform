@@ -4,4 +4,5 @@ export type Blog = {
   content: string
   updatedAt: string
   id: string | number
+  description: string
 }

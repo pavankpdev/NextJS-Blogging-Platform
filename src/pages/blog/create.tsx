@@ -41,6 +41,7 @@ const Create = () => {
       userId: user?.id as string,
       id: `${blogId}:${user?.id}`,
       thumbnailImage,
+      description: editor.description || 'No description',
     },
     onSuccess: (data: unknown) => {
       console.log(data)

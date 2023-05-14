@@ -4,7 +4,7 @@ import React from 'react'
 
 // TYPE
 import type { Blog } from '@/types'
-import Link from "next/link";
+import Link from 'next/link'
 
 const BlogCard: React.FC<Blog> = (props) => {
   return (
@@ -19,7 +19,7 @@ const BlogCard: React.FC<Blog> = (props) => {
         </div>
         <div className={styles.blogcard__body__container}>
           <h2>{props?.title}</h2>
-          <p>{`${props?.content}`}</p>
+          <p>{`${props?.description}`}</p>
         </div>
         <div className={styles.blogcard__footer__container}>
           <small>{props?.updatedAt}</small>

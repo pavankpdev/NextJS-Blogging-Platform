@@ -7,7 +7,7 @@
 body {
   background: #16161a;
   color: #94a1b2;
-  font-family: 'Poppins', sans-serif;;
+  font-family: 'Poppins', sans-serif;
 }
 
 h1,
@@ -17,7 +17,7 @@ h4,
 h5,
 h6 {
   color: #fffffe;
-  font-family: 'Montserrat', sans-serif;;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .ProseMirror {
