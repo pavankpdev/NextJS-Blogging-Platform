@@ -4,6 +4,7 @@ import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
 import { EditorProvider } from '@/context/Editor'
 
 import '@/styles/globals.css'
+import '@/styles/Content.module.scss'
 import { useState } from 'react'
 
 function MyApp({ Component, pageProps }: AppProps) {

@@ -9,7 +9,7 @@ const nextConfig = {
     esmExternals: false, // THIS IS THE FLAG THAT MATTERS
   },
   images: {
-    domains: ['cdn.hashnode.com'],
+    domains: ['cdn.hashnode.com', 'picsum.photos', 'uploadthing.com'],
   },
 }
 

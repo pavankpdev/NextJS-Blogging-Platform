@@ -6,7 +6,7 @@ type TCreateBlog = {
   content: string
   userId: string | number
   id: string
-  thumbnailImage?: string
+  thumbnailImage?: string,
 }
 
 type MutationParams = {

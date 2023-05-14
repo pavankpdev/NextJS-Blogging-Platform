@@ -2,7 +2,14 @@ import Image from 'next/image'
 import Navbar from '@/components/layouts/Navabr'
 import UtilityStyles from '@/styles/Utility.module.scss'
 import styles from '@/styles/BlogView.module.scss'
-const Blog = () => {
+import blogContentStyle from '@/styles/Content.module.scss'
+import { NextPage, NextPageContext } from "next";
+import { axiosInstance as axios } from "@/config/axios";
+import type { Blog as BlogType } from '@/types'
+import React from "react";
+
+const Blog: NextPage<{blog: BlogType}> = (props) => {
+  console.log(props);
   return (
     <>
       <Navbar />
@@ -10,14 +17,12 @@ const Blog = () => {
         <div className={styles.blog__view__container}>
           <div className={styles.blog__view__header}>
             <h1 className={styles.blog__title}>
-              The Ultimate Deep Dive into React Server Components (Revised)
+              {props.blog.title}
             </h1>
             <div className={styles.blog__thumbnail}>
               <Image
-                src={
-                  'https://cdn.hashnode.com/res/hashnode/image/upload/v1683520341275/a722ac4d-c6e9-4aae-9685-9f1d8b320219.png?w=1600&h=840&fit=crop&crop=entropy&auto=compress,format&format=webp'
-                }
-                alt={'Blog Title'}
+                src={props?.blog?.thumbnailImage || "https://picsum.photos/seed/picsum/536/354"}
+                alt={props.blog.title}
                 layout={'fill'}
               />
             </div>
@@ -25,9 +30,9 @@ const Blog = () => {
 
           <div className={styles.blog__view__body}>
             <div
-              className={'blog__content'}
+              className={blogContentStyle.blog__content}
               dangerouslySetInnerHTML={{
-                __html: '<p>Hello Guys</p>',
+                __html: props.blog.content,
               }}
             />
           </div>
@@ -37,4 +42,15 @@ const Blog = () => {
   )
 }
 
+export async function getServerSideProps(context: NextPageContext) {
+  const { data } =  await axios({
+    method: 'GET',
+    url: `/b/${process.env.NEXT_PUBLIC_JSONBIN_BIN_ID}`,
+  })
+  return {
+    props: {
+      blog: data?.record?.blogs.find((blog: {id: string}) => blog.id === context.query.id),
+    }, // will be passed to the page component as props
+  };
+}
 export default Blog

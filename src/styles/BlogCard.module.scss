@@ -33,6 +33,15 @@
     display: flex;
     flex-direction: column;
     gap: 0.4rem;
+    width: 100%;
+
+    p {
+      width: 100%;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
   }
 
   .blogcard__footer__container {
