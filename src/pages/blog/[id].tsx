@@ -43,7 +43,7 @@ const Blog: NextPage<{ blog: BlogType }> = (props) => {
   )
 }
 
-export async function getStaticProps({params}: {params: {id: string}}) {
+export async function getStaticProps({ params }: { params: { id: string } }) {
   const { data } = await axios({
     method: 'GET',
     url: `/b/${process.env.NEXT_PUBLIC_JSONBIN_BIN_ID}`,
@@ -63,11 +63,11 @@ export async function getStaticPaths() {
     url: `/b/${process.env.NEXT_PUBLIC_JSONBIN_BIN_ID}`,
   })
 
-  const paths = data?.record?.blogs.map((blog: {id: string}) => {
+  const paths = data?.record?.blogs.map((blog: { id: string }) => {
     return {
       params: {
         id: blog.id,
-      }
+      },
     }
   })
 
