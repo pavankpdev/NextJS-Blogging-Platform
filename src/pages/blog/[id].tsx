@@ -3,7 +3,7 @@ import Navbar from '@/components/layouts/Navabr'
 import UtilityStyles from '@/styles/Utility.module.scss'
 import styles from '@/styles/BlogView.module.scss'
 import blogContentStyle from '@/styles/Content.module.scss'
-import { NextPage, NextPageContext } from 'next'
+import { NextPage } from 'next'
 import { axiosInstance as axios } from '@/config/axios'
 import type { Blog as BlogType } from '@/types'
 import React from 'react'
@@ -43,7 +43,7 @@ const Blog: NextPage<{ blog: BlogType }> = (props) => {
   )
 }
 
-export async function getServerSideProps(context: NextPageContext) {
+export async function getStaticProps({params}: {params: {id: string}}) {
   const { data } = await axios({
     method: 'GET',
     url: `/b/${process.env.NEXT_PUBLIC_JSONBIN_BIN_ID}`,
@@ -51,9 +51,29 @@ export async function getServerSideProps(context: NextPageContext) {
   return {
     props: {
       blog: data?.record?.blogs.find(
-        (blog: { id: string }) => blog.id === context.query.id
+        (blog: { id: string }) => blog.id === params.id
       ),
     }, // will be passed to the page component as props
+  }
+}
+
+export async function getStaticPaths() {
+  const { data } = await axios({
+    method: 'GET',
+    url: `/b/${process.env.NEXT_PUBLIC_JSONBIN_BIN_ID}`,
+  })
+
+  const paths = data?.record?.blogs.map((blog: {id: string}) => {
+    return {
+      params: {
+        id: blog.id,
+      }
+    }
+  })
+
+  return {
+    paths,
+    fallback: false,
   }
 }
 export default Blog
